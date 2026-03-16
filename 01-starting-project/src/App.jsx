@@ -1,4 +1,5 @@
 import { CORE_CONCEPTS } from "./data.js";
+import { EXAMPLES } from "./data.js";
 import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept.jsx";
 import TabButton from "./components/TabButton.jsx";
@@ -23,18 +24,30 @@ function MyName() {
 //   }
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState(
-    "Please click on button!!..",
-  );
-
   console.log("APP COMPONENT EXECUTION!");
-  //let message = "click on any button!";
+  const [selectedTopic, setSelectedTopic] = useState(); // default button
+  console.log("initial/last default value of selectedTopic : ", selectedTopic);
+
   function handleSelect(selectedButton) {
     console.log("1...........", selectedButton);
-    //message = selectedButton;
     setSelectedTopic(selectedButton);
-    console.log("selectedTopic", selectedTopic);
+    console.log("selectedTopic : ", selectedTopic);
   }
+
+  let tabContent = "Please click on button to see result!!";
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <h3>{EXAMPLES[selectedTopic].code}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
+  }
+
   return (
     <div>
       <MyName></MyName>
@@ -44,7 +57,10 @@ function App() {
           <ul>
             {/* if props name are similar to property of data we want to set
             then */}
-            <CoreConcept {...CORE_CONCEPTS[0]} />
+            {CORE_CONCEPTS.map((data) => (
+              <CoreConcept key={data.title} {...data}></CoreConcept>
+            ))}
+            {/* <CoreConcept {...CORE_CONCEPTS[0]} />
             <CoreConcept
               title={CORE_CONCEPTS[1].title}
               description={CORE_CONCEPTS[1].description}
@@ -59,7 +75,7 @@ function App() {
               title={CORE_CONCEPTS[3].title}
               description={CORE_CONCEPTS[3].description}
               image={CORE_CONCEPTS[3].image}
-            />
+            /> */}
           </ul>
         </section>
         <h2>Time to get started!</h2>
@@ -70,14 +86,32 @@ function App() {
             <TabButton onSelect={handleSelect("components")}>
               Components
             </TabButton> */}
-            <TabButton onSelect={() => handleSelect("components")}>
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              onSelect={() => handleSelect("components")}
+            >
               Components
             </TabButton>
-            <TabButton onSelect={() => handleSelect("jsx")}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect("props")}>props</TabButton>
-            <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              onSelect={() => handleSelect("jsx")}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              onSelect={() => handleSelect("props")}
+            >
+              props
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              onSelect={() => handleSelect("state")}
+            >
+              State
+            </TabButton>
           </menu>
-          Dynamic Components! {selectedTopic}
+          {tabContent}
         </section>
       </main>
     </div>
