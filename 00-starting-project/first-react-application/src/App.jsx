@@ -1,18 +1,21 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
 import "./App.css";
-import User from "./User";
+import General from "./CustomFunction/General";
+import { useState } from "react";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [fruit, setFruit] = useState("Apple");
+
+  function updateFruit() {
+    setFruit("Banana");
+    console.log("fruitName is ", fruit);
+  }
 
   return (
     <>
-      <User></User>
-      <h1>Counter value : {counter}</h1>
-      <button onClick={() => setCounter(counter + 1)}>Click on increase</button>
+      <h1>Fruit Name is {fruit}</h1>
+      <button onClick={updateFruit}>Change Fruit</button>
+      <h1>General Component Rendering:------------------:</h1>
+      <General></General>
     </>
   );
 }
