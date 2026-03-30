@@ -1,9 +1,11 @@
 import "./App.css";
 import General from "./CustomFunction/General";
 import { useState } from "react";
+import Display from "./CustomFunction/Display";
 
 function App() {
   const [fruit, setFruit] = useState("Apple");
+  const [display, setDisplay] = useState(true);
 
   function updateFruit() {
     setFruit("Banana");
@@ -12,9 +14,11 @@ function App() {
 
   return (
     <>
-      <h1>Fruit Name is {fruit}</h1>
       <button onClick={updateFruit}>Change Fruit</button>
-      <h1>General Component Rendering:------------------:</h1>
+      <h1>Fruit Name is {fruit}</h1>
+      <button onClick={() => setDisplay(!display)}>Toggle..</button>
+      {display ? <h1>conditional rendering</h1> : null}
+      {display ? <Display></Display> : null}
       <General></General>
     </>
   );

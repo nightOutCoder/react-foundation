@@ -9,3 +9,7 @@ export function UserProfile() {
 }
 
 export const Passkey = "423@@32d";
+
+export function UserName({ inputname }) {
+  return <h1>User Name is {inputname}</h1>;
+}
