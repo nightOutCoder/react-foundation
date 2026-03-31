@@ -3,6 +3,7 @@ import { PrintColleges } from "./PrintObject";
 import { UserName } from "./User";
 import { useState } from "react";
 import Wrapper from "./Wrapper";
+import Input from "./Input";
 
 function MyProfileImage() {
   let nameData = "John Doe";
@@ -59,6 +60,8 @@ function MyProfileImage() {
         <h2>Hi This is Dynamic 2</h2>
         <h2 style={{ color: "red" }}>Hi This is Dynamic 2.1</h2>
       </Wrapper>
+      <hr />
+      <Input></Input>
       <hr />
     </div>
   );

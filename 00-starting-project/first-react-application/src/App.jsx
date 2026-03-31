@@ -2,6 +2,7 @@ import "./App.css";
 import General from "./CustomFunction/General";
 import { useState } from "react";
 import Display from "./CustomFunction/Display";
+import ControlledComponent from "./CustomFunction/ControlledComponent";
 
 function App() {
   const [fruit, setFruit] = useState("Apple");
@@ -20,6 +21,8 @@ function App() {
       {display ? <h1>conditional rendering</h1> : null}
       {display ? <Display></Display> : null}
       <General></General>
+      <hr></hr>
+      <ControlledComponent></ControlledComponent>
     </>
   );
 }
